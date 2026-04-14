@@ -1,4 +1,9 @@
-@import "tailwindcss";
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
     --background: #000000;
@@ -13,4 +18,18 @@ body {
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-neutral-950 text-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
