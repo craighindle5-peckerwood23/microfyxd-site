@@ -1,7 +1,8 @@
-import Hero from "@/components/Hero";
-
-export default function Home() {
+export default function Hero() {
   return (
-    <Hero />
+    <div>
+      {/* TODO: Restore Hero UI */}
+      <h1>Hero Component Loaded</h1>
+    </div>
   );
 }
