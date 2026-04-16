@@ -12,7 +12,7 @@ export default function StripeButton({ url, label }: StripeButtonProps) {
       rel="noreferrer"
       className="w-full py-3 rounded-lg bg-white text-black font-semibold text-center block hover:bg-gray-100 transition text-sm"
     >
-      {label || 'Pay with Stripe'}
+      {label || "Pay with Stripe"}
     </a>
   )
 }
