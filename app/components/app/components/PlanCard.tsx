@@ -1,7 +1,7 @@
 // app/components/PlanCard.tsx
-import StripeButton from './StripeButton'
-import PayPalButton from './PayPalButton'
-import CashAppButton from './CashAppButton'
+import StripeButton from "./StripeButton"
+import PayPalButton from "./PayPalButton"
+import CashAppButton from "./CashAppButton"
 
 type PlanCardProps = {
   name: string
@@ -12,26 +12,24 @@ type PlanCardProps = {
   highlight?: boolean
   stripeUrl: string
   paypalUrl: string
-  cashAppAmount?: number
 }
 
 export default function PlanCard({
   name,
   description,
   price,
-  period = 'mo',
+  period = "mo",
   features,
   highlight,
   stripeUrl,
   paypalUrl,
-  cashAppAmount,
 }: PlanCardProps) {
   return (
     <div
       className={`p-8 rounded-2xl bg-[#05070A] border ${
         highlight
-          ? 'border-[#1BC7F1]/70 shadow-[0_0_40px_#1BC7F1]/40'
-          : 'border-gray-800'
+          ? "border-[#1BC7F1]/70 shadow-[0_0_40px_#1BC7F1]/40"
+          : "border-gray-800"
       }`}
     >
       <h2 className="text-xl font-grotesk font-semibold">{name}</h2>
@@ -49,15 +47,9 @@ export default function PlanCard({
       </ul>
 
       <div className="mt-8 space-y-2">
-        <StripeButton
-          url={stripeUrl}
-          label={`Subscribe with Stripe`}
-        />
-        <PayPalButton
-          url={paypalUrl}
-          label={`Subscribe with PayPal`}
-        />
-        <CashAppButton amount={cashAppAmount ?? price} />
+        <StripeButton url={stripeUrl} label="Subscribe with Stripe" />
+        <PayPalButton url={paypalUrl} label="Subscribe with PayPal" />
+        <CashAppButton amount={price} />
       </div>
 
       {highlight && (
