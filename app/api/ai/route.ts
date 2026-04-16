@@ -1,6 +1,6 @@
 // app/api/ai/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { callGroq } from "@/lib/groq";
+import { callGroq } from "../../../lib/groq";
 
 export async function POST(req: NextRequest) {
   try {
