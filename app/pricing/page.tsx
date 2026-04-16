@@ -1,5 +1,5 @@
 // app/pricing/page.tsx
-import PlanCard from '../components/PlanCard'
+import PlanCard from "../components/PlanCard"
 
 export default function PricingPage() {
   return (
@@ -15,20 +15,20 @@ export default function PricingPage() {
       </section>
 
       <section className="mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        
         {/* Starter – $9.99/mo */}
         <PlanCard
           name="Starter"
           description="For individual operators and small shops."
           price={9.99}
           features={[
-            'Core operator console',
-            'Basic workflows',
-            'Up to 3 active workflows',
-            'Standard support',
+            "Core operator console",
+            "Basic workflows",
+            "Up to 3 active workflows",
+            "Standard support",
           ]}
-          stripeUrl="https://buy.stripe.com/placeholder-starter" // TODO: replace
-          paypalUrl="https://www.paypal.com/checkoutnow?token=STARTER_PLACEHOLDER" // TODO: replace
-          cashAppAmount={9.99}
+          stripeUrl="https://buy.stripe.com/REPLACE_ME_STARTER"
+          paypalUrl="https://paypal.com/checkoutnow?token=REPLACE_ME_STARTER"
         />
 
         {/* Pro – $29.99/mo */}
@@ -37,16 +37,15 @@ export default function PricingPage() {
           description="For growing teams and multi‑bay operations."
           price={29.99}
           features={[
-            'Everything in Starter',
-            'Advanced workflows',
-            'File analyzer access',
-            'Up to 15 active workflows',
-            'Priority support',
+            "Everything in Starter",
+            "Advanced workflows",
+            "File analyzer access",
+            "Up to 15 active workflows",
+            "Priority support",
           ]}
           highlight
-          stripeUrl="https://buy.stripe.com/placeholder-pro" // TODO: replace
-          paypalUrl="https://www.paypal.com/checkoutnow?token=PRO_PLACEHOLDER" // TODO: replace
-          cashAppAmount={29.99}
+          stripeUrl="https://buy.stripe.com/REPLACE_ME_PRO"
+          paypalUrl="https://paypal.com/checkoutnow?token=REPLACE_ME_PRO"
         />
 
         {/* Operator – $79.99/mo */}
@@ -55,21 +54,18 @@ export default function PricingPage() {
           description="For high‑volume, high‑stakes operations."
           price={79.99}
           features={[
-            'Everything in Pro',
-            'Custom workflow design',
-            'SLAs & integrations',
-            'Dedicated operator support',
+            "Everything in Pro",
+            "Custom workflow design",
+            "SLAs & integrations",
+            "Dedicated operator support",
           ]}
-          stripeUrl="https://buy.stripe.com/placeholder-operator" // TODO: replace
-          paypalUrl="https://www.paypal.com/checkoutnow?token=OPERATOR_PLACEHOLDER" // TODO: replace
-          cashAppAmount={79.99}
+          stripeUrl="https://buy.stripe.com/REPLACE_ME_OPERATOR"
+          paypalUrl="https://paypal.com/checkoutnow?token=REPLACE_ME_OPERATOR"
         />
       </section>
 
       <section className="mt-10 text-center text-xs text-gray-500 font-inter">
-        <p>
-          Stripe and PayPal links are placeholders. Replace them with your live payment links from your Stripe and PayPal dashboards.
-        </p>
+        <p>Replace Stripe and PayPal URLs with your live payment links.</p>
       </section>
     </main>
   )
