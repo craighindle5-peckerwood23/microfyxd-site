@@ -1,91 +1,76 @@
-const plans = [
-  {
-    id: "starter",
-    name: "Starter",
-    price: "$9/mo",
-    description: "For individuals getting started with AI operations.",
-    features: [
-      "AI Operator Console",
-      "Micro-task engine",
-      "File analyzer (limited)",
-      "Up to 50 messages/day",
-    ],
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    price: "$29/mo",
-    description: "For power users and solo operators.",
-    features: [
-      "Unlimited console & micro-tasks",
-      "Unlimited file analysis",
-      "Workflow builder",
-      "Document filler & PDF export",
-      "Priority speed",
-    ],
-  },
-  {
-    id: "automation",
-    name: "Automation Suite",
-    price: "$49/mo",
-    description: "For automation-heavy users and small teams.",
-    features: [
-      "Everything in Pro",
-      "Phone & SMS automation (coming online)",
-      "Web scraping & API chaining",
-      "Scheduled workflows",
-      "Team access",
-    ],
-  },
-];
+// app/pricing/page.tsx
+import PlanCard from '../components/PlanCard'
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <h1 className="text-4xl font-bold text-center">
-          Choose Your Operating Tier
-        </h1>
-        <p className="text-zinc-400 text-center mt-3">
-          All plans are recurring. Upgrade, downgrade, or cancel anytime.
+    <main className="w-full min-h-screen py-24">
+      <section className="text-center">
+        <h1 className="text-5xl font-grotesk font-bold">Pricing</h1>
+        <p className="mt-4 text-gray-300 font-inter">
+          Start at $9.99/month. Scale when your operations demand it.
         </p>
+        <p className="mt-2 text-xs text-gray-500 font-inter">
+          Cancel anytime. No contracts. Operator‑grade performance from day one.
+        </p>
+      </section>
 
-        <div className="grid gap-8 mt-12 md:grid-cols-3">
-          {plans.map((plan) => (
-            <div
-              key={plan.id}
-              className="border border-zinc-800 rounded-xl p-6 flex flex-col justify-between bg-zinc-950/60"
-            >
-              <div>
-                <h2 className="text-xl font-semibold">{plan.name}</h2>
-                <p className="text-2xl font-bold mt-2">{plan.price}</p>
-                <p className="text-zinc-400 text-sm mt-2">
-                  {plan.description}
-                </p>
+      <section className="mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Starter – $9.99/mo */}
+        <PlanCard
+          name="Starter"
+          description="For individual operators and small shops."
+          price={9.99}
+          features={[
+            'Core operator console',
+            'Basic workflows',
+            'Up to 3 active workflows',
+            'Standard support',
+          ]}
+          stripeUrl="https://buy.stripe.com/placeholder-starter" // TODO: replace
+          paypalUrl="https://www.paypal.com/checkoutnow?token=STARTER_PLACEHOLDER" // TODO: replace
+          cashAppAmount={9.99}
+        />
 
-                <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <span className="text-green-400 mt-0.5">✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* Pro – $29.99/mo */}
+        <PlanCard
+          name="Pro"
+          description="For growing teams and multi‑bay operations."
+          price={29.99}
+          features={[
+            'Everything in Starter',
+            'Advanced workflows',
+            'File analyzer access',
+            'Up to 15 active workflows',
+            'Priority support',
+          ]}
+          highlight
+          stripeUrl="https://buy.stripe.com/placeholder-pro" // TODO: replace
+          paypalUrl="https://www.paypal.com/checkoutnow?token=PRO_PLACEHOLDER" // TODO: replace
+          cashAppAmount={29.99}
+        />
 
-              <button
-                className="mt-6 w-full py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 text-sm font-medium"
-                onClick={() => {
-                  // For now, send them to a Cash App instructions page
-                  window.location.href = `/upgrade?plan=${plan.id}`;
-                }}
-              >
-                Subscribe with Cash App
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+        {/* Operator – $79.99/mo */}
+        <PlanCard
+          name="Operator"
+          description="For high‑volume, high‑stakes operations."
+          price={79.99}
+          features={[
+            'Everything in Pro',
+            'Custom workflow design',
+            'SLAs & integrations',
+            'Dedicated operator support',
+          ]}
+          stripeUrl="https://buy.stripe.com/placeholder-operator" // TODO: replace
+          paypalUrl="https://www.paypal.com/checkoutnow?token=OPERATOR_PLACEHOLDER" // TODO: replace
+          cashAppAmount={79.99}
+        />
+      </section>
+
+      <section className="mt-10 text-center text-xs text-gray-500 font-inter">
+        <p>
+          Stripe and PayPal links are placeholders. Replace them with your live payment links from your Stripe and PayPal dashboards.
+        </p>
+      </section>
     </main>
-  );
+  )
 }
