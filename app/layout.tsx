@@ -1,24 +1,21 @@
+// app/layout.tsx
+import './globals.css'
+import { Inter, Space_Grotesk } from 'next/font/google'
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const grotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-grotesk' })
 
+export const metadata = {
+  title: 'Microfyxd',
+  description: 'AI Operator Console powered by Groq',
+}
 
-import "./globals.css";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-
-export const metadata: Metadata = {
-  title: "Microfyxd",
-  description: "Unified Microfyxd frontend + backend + AI console",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
+      <body className="bg-[#05070A] text-white antialiased">
+        {children}
+      </body>
     </html>
-  );
+  )
 }
