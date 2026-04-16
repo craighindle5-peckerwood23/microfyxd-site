@@ -28,7 +28,7 @@ body {
   }
 
   body {
-    @apply bg-neutral-950 text-white;
+    @apply bg-neutral-900 text-white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
