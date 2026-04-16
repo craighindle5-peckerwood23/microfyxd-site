@@ -4,10 +4,10 @@ type CashAppButtonProps = {
 }
 
 export default function CashAppButton({ amount }: CashAppButtonProps) {
-  const baseTag = '$microfyxd' // TODO: replace with your real Cashtag
+  const tag = "$microfyxd"
   const url = amount
-    ? `https://cash.app/${baseTag}/${amount}`
-    : `https://cash.app/${baseTag}`
+    ? `https://cash.app/${tag}/${amount}`
+    : `https://cash.app/${tag}`
 
   return (
     <a
