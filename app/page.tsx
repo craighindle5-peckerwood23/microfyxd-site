@@ -1,4 +1,3 @@
-
 import FinalCTA from "@/components/FinalCTA"
 import CoachingPost from "@/components/CoachingPost"
 
