@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+// app/page.tsx
+
+import Hero from "@/components/Hero"
 // app/page.tsx
 
 import Hero from "@/components/Hero"
