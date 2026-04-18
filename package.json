@@ -1,5 +1,4 @@
-{
-  "name": "microfyxd-site",
+name": "microfyxd-site",
   "version": "1.0.0",
   "private": true,
   "scripts": {
