@@ -61,3 +61,22 @@ body {
   0% { transform: translateY(0); }
   100% { transform: translateY(3px); }
 }
+@keyframes boot1 {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 0.7; transform: translateY(0); }
+}
+
+@keyframes boot2 {
+  0%, 20% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 0.7; transform: translateY(0); }
+}
+
+@keyframes boot3 {
+  0%, 40% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 0.7; transform: translateY(0); }
+}
+
+@keyframes boot4 {
+  0%, 60% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
