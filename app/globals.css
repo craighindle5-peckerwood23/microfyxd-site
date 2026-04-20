@@ -42,7 +42,21 @@ body {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
 }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
 
+@keyframes pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes scan {
+  0% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+  100% { opacity: 0.15; }
+}
 @keyframes scanlines {
   0% { transform: translateY(0); }
   100% { transform: translateY(3px); }
