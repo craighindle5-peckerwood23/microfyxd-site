@@ -38,3 +38,12 @@ body {
   50% { opacity: 0.35; }
 }
 }
+@keyframes hudfloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(3px); }
+}
