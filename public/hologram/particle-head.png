@@ -1,1 +1,12 @@
 
+<img
+  src="/hologram/hologram-head.png"
+  alt="AI Hologram Head"
+  className="
+    absolute inset-0 
+    w-full h-full 
+    object-contain 
+    opacity-90 
+    animate-[float_6s_ease_in_out_infinite]
+  "
+/>
