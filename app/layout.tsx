@@ -10,7 +10,9 @@ export const metadata = {
   description: 'AI Operator Console powered by Groq',
 }
 
-export default function RootLayout({ children }) {
+import React from 'react';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
       <body className="bg-[#05070A] text-white antialiased">

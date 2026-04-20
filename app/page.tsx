@@ -1,60 +1,60 @@
-import hero from "@/components/hero";
-import hologramsection from "@/components/hologramsection";
-import neurallink from "@/components/neurallink";
-import groqlpu from "@/components/groqlpu";
-import operatorconsolesection from "@/components/operatorconsolesection";
-import microtaskengine from "@/components/microtaskengine";
-import fileanalyzer from "@/components/fileanalyzer";
-import workflowbuilder from "@/components/workflowbuilder";
-import poweredbygroq from "@/components/poweredbygroq";
-import coachingpost from "@/components/coachingpost";
-import finalcta from "@/components/finalcta";
+import Hero from "@/app/components/hero";
+import HologramSection from "@/app/components/hologramsection";
+import NeuralLink from "@/app/components/neurallink";
+import GroqLPU from "@/app/components/groqlpu";
+import OperatorConsoleSection from "@/app/components/operatorconsolesection";
+import MicroTaskEngine from "@/app/components/microtaskengine";
+import FileAnalyzer from "@/app/components/fileanalyzer";
+import WorkflowBuilder from "@/app/components/workflowbuilder";
+import PoweredByGroq from "@/app/components/poweredbygroq";
+import CoachingPost from "@/app/components/coachingpost";
+import FinalCTA from "@/app/components/finalcta";
 
 export default function Page() {
   return (
     <main className="flex flex-col w-full items-center justify-center">
       <section className="w-full">
-        <hero />
+        <Hero />
       </section>
 
       <section className="w-full">
-        <hologramsection />
+        <HologramSection />
       </section>
 
       <section className="w-full">
-        <neurallink />
+        <NeuralLink />
       </section>
 
       <section className="w-full">
-        <groqlpu />
+        <GroqLPU />
       </section>
 
       <section className="w-full">
-        <operatorconsolesection />
+        <OperatorConsoleSection />
       </section>
 
       <section className="w-full">
-        <microtaskengine />
+        <MicroTaskEngine />
       </section>
 
       <section className="w-full">
-        <fileanalyzer />
+        <FileAnalyzer />
       </section>
 
       <section className="w-full">
-        <workflowbuilder />
+        <WorkflowBuilder />
       </section>
 
       <section className="w-full">
-        <poweredbygroq />
+        <PoweredByGroq />
       </section>
 
       <section className="w-full">
-        <coachingpost />
+        <CoachingPost />
       </section>
 
       <section className="w-full">
-        <finalcta />
+        <FinalCTA />
       </section>
     </main>
   );

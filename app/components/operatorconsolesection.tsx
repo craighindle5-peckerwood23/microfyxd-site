@@ -1,5 +1,5 @@
 // app/components/OperatorConsoleSection.tsx
-import AIConsole from './AI Console'
+import AIConsole from './aiconsole'
 
 export default function OperatorConsoleSection() {
   return (
