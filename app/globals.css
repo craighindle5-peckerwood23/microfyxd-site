@@ -28,5 +28,13 @@ body {
     @apply bg-neutral-900 text-white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+  }@keyframes datastream {
+  0% { transform: translateY(-20%); }
+  100% { transform: translateY(20%); }
+}
+
+@keyframes pulsewave {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
 }
