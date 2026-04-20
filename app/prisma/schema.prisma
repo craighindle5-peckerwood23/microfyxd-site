@@ -12,7 +12,9 @@ datasource db {
 model Task {
   id        String     @id @default(cuid())
   text      String
-  status    String     @default("PENDING")
+  status    String     @default("pending")
+  plan      String?
+  results   String?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   subtasks  Subtask[]
@@ -24,8 +26,8 @@ model Subtask {
   taskId    String
   type      String
   title     String
-  payload   Json
-  status    String   @default("QUEUED")
+  payload   String
+  status    String   @default("queued")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
