@@ -1,59 +1,29 @@
-import Hero from "@/app/components/Hero";
-import ProofIntoPower from "@/app/components/ProofIntoPower";
-import TopTools from "@/app/components/TopTools";
-import RecommendedBundles from "@/app/components/RecommendedBundles";
-import EmergencyBundle from "@/app/components/EmergencyBundle";
-import TestimonialCarousel from "@/app/components/TestimonialCarousel";
-import OperatorConsoleSection from "@/app/components/OperatorConsoleSection";
-import WorkflowBuilder from "@/app/components/WorkflowBuilder";
-import MicroTaskEngine from "@/app/components/MicroTaskEngine";
-import FileAnalyzer from "@/app/components/FileAnalyzer";
-import PoweredByGroq from "@/app/components/PoweredByGroq";
-import FinalCTA from "@/app/components/FinalCTA";
-
-export default function Page() {
+ export default function Hero() {
   return (
-    <main className="flex flex-col w-full items-center">
+    <section className="w-full flex flex-col items-center justify-center py-24 px-6 text-center">
+      <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+        Microfyxd — Operator‑Grade Automation
+      </h1>
 
-      {/* HERO */}
-      <section className="w-full">
-        <Hero />
-      </section>
+      <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10">
+        Build workflows, analyze files, deploy micro‑tasks, and run your entire operation with precision.
+      </p>
 
-      {/* PROOF INTO POWER */}
-      <section className="w-full">
-        <ProofIntoPower />
-      </section>
+      <div className="flex flex-col md:flex-row gap-4">
+        <a
+          href="/console"
+          className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition"
+        >
+          Launch Console
+        </a>
 
-      {/* TOP 5 TOOLS */}
-      <section className="w-full">
-        <TopTools />
-      </section>
-
-      {/* RECOMMENDED BUNDLES */}
-      <section className="w-full">
-        <RecommendedBundles />
-      </section>
-
-      {/* EMERGENCY BUNDLE (Best Value Badge) */}
-      <section className="w-full">
-        <EmergencyBundle />
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="w-full">
-        <TestimonialCarousel />
-      </section>
-
-      {/* OPERATOR CONSOLE */}
-      <section className="w-full">
-        <OperatorConsoleSection />
-      </section>
-
-      {/* WORKFLOW BUILDER */}
-      <section className="w-full">
-        <WorkflowBuilder />
-      </section>
-
-      {/* MICRO TASK ENGINE */}
-      <section className="w-full">
+        <a
+          href="/workflows"
+          className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition"
+        >
+          Build Workflow
+        </a>
+      </div>
+    </section>
+  );
+}
