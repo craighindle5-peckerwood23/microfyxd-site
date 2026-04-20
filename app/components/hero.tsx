@@ -1,4 +1,6 @@
- export default function Hero() {
+import Link from 'next/link'
+
+export default function Hero() {
   return (
     <section className="relative w-full flex flex-col items-center justify-center py-28 px-6 text-center overflow-hidden">
 
@@ -26,19 +28,17 @@
 
         {/* CTA Buttons */}
         <div className="flex flex-col md:flex-row gap-4">
-          <a
-            href="/console"
-            className="px-7 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition shadow-lg"
-          >
-            Launch Operator Console
-          </a>
+          <Link href="/upgrade">
+            <button className="px-7 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition shadow-lg">
+              Launch Operator Console
+            </button>
+          </Link>
 
-          <a
-            href="/workflows"
-            className="px-7 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition"
-          >
-            Build a Workflow
-          </a>
+          <Link href="/pricing">
+            <button className="px-7 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition">
+              View Pricing
+            </button>
+          </Link>
         </div>
       </div>
     </section>

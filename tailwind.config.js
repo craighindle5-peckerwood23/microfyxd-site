@@ -12,6 +12,16 @@ module.exports = {
         inter: ['var(--font-inter)'],
         grotesk: ['var(--font-grotesk)'],
       },
+      animation: {
+        'spin-slow': 'spin 8s linear infinite',
+        'reverse-spin': 'reverse-spin 12s linear infinite',
+      },
+      keyframes: {
+        'reverse-spin': {
+          from: { transform: 'rotate(360deg)' },
+          to: { transform: 'rotate(0deg)' },
+        },
+      },
     },
   },
   plugins: [],

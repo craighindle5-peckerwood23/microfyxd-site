@@ -19,16 +19,28 @@ export default function ConsolePage() {
     setTasks([]);
 
     try {
-      const res = await fetch("/api/microtasks", {
+      const res = await fetch("/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input }),
+        body: JSON.stringify({ mode: "tasks", input: input }),
       });
 
       if (!res.ok) throw new Error("Failed");
 
       const data = await res.json();
-      setTasks(data.tasks || []);
+      const content = data.content || "";
+      
+      // Parse the AI response into tasks
+      const lines = content.split('\n').filter((line: string) => line.trim() !== "");
+      const parsedTasks = lines.map((line: string) => {
+        const match = line.match(/(.*)\((.*)\)/);
+        if (match) {
+          return { title: match[1].trim(), estimate: match[2].trim(), done: false };
+        }
+        return { title: line.trim(), estimate: "~15min", done: false };
+      });
+      
+      setTasks(parsedTasks);
     } catch (e) {
       console.error(e);
       alert("Failed to generate micro-tasks.");
