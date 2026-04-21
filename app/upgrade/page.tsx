@@ -104,7 +104,9 @@ export default function ConsolePage() {
                         <span className="font-bold text-white uppercase text-[10px] px-1.5 py-0.5 bg-zinc-800 rounded">
                           {step.type.replace('_', ' ')}
                         </span>
-                        <span>{step.type === 'phone_call' ? step.phone_number : step.url}</span>
+                        <span className="truncate max-w-[200px] md:max-w-md">
+                          {step.type === 'phone_call' ? step.phone_number : step.url}
+                        </span>
                       </div>
                       
                       {result && (
