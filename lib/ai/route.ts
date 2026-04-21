@@ -1,34 +1,26 @@
 // app/api/ai/route.ts
-import { NextRequest } from "next/server";
-import { runAI, AIMessage } from "@/lib/ai/router";
+import { NextResponse } from "next/server";
+import { callGroq } from "@/lib/ai/groq";
 
-export const runtime = "edge";
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { messages, maxTokens } = body as {
-      messages: AIMessage[];
-      maxTokens?: number;
-    };
+    const prompt: string = body?.prompt ?? "";
 
-    if (!messages || !Array.isArray(messages)) {
-      return new Response(
-        JSON.stringify({ error: "messages array is required" }),
+    if (!prompt) {
+      return NextResponse.json(
+        { error: "Missing 'prompt' in request body" },
         { status: 400 }
       );
     }
 
-    const output = await runAI({ messages, maxTokens });
+    const reply = await callGroq(prompt);
 
-    return new Response(JSON.stringify({ output }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (err: any) {
+    return NextResponse.json({ reply });
+  } catch (err) {
     console.error("AI route error:", err);
-    return new Response(
-      JSON.stringify({ error: "AI request failed", detail: err?.message }),
+    return NextResponse.json(
+      { error: "AI request failed" },
       { status: 500 }
     );
   }
