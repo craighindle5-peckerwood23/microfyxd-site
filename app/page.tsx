@@ -151,7 +151,7 @@ export default function Home() {
             <PricingCard
               tier="Pro"
               price="$29/mo"
-              highlight
+              highlight={true}
               features={[
                 "Full AI Claims Engine",
                 "Unlimited Storage",
@@ -176,7 +176,13 @@ export default function Home() {
 
 /* COMPONENTS */
 
-function FeatureCard({ title, desc }) {
+function FeatureCard({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
   return (
     <div className="p-8 bg-white/5 rounded-xl border border-white/10 backdrop-blur-md hover:border-cyan-400 transition-all">
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
@@ -185,7 +191,15 @@ function FeatureCard({ title, desc }) {
   );
 }
 
-function StepCard({ number, title, desc }) {
+function StepCard({
+  number,
+  title,
+  desc,
+}: {
+  number: string;
+  title: string;
+  desc: string;
+}) {
   return (
     <div className="p-8 bg-white/5 rounded-xl border border-white/10 backdrop-blur-md">
       <div className="text-cyan-400 text-5xl font-extrabold mb-4">{number}</div>
@@ -195,7 +209,21 @@ function StepCard({ number, title, desc }) {
   );
 }
 
-function PricingCard({ tier, price, features, button, href, highlight }) {
+function PricingCard({
+  tier,
+  price,
+  features,
+  button,
+  href,
+  highlight = false,
+}: {
+  tier: string;
+  price: string;
+  features: string[];
+  button: string;
+  href: string;
+  highlight?: boolean;
+}) {
   return (
     <div
       className={`p-10 rounded-xl border backdrop-blur-md ${
