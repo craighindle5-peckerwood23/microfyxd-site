@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { runPhoneCall } from "@/lib/automation/twilio_call";
-import { runFormSubmission } from "@/lib/automation/form_submitter";
+import { runPhoneCall } from "@/lib/automation/phone";
+import { runFormSubmission } from "@/lib/automation/form";
 
 export async function POST(req: Request) {
   try {
