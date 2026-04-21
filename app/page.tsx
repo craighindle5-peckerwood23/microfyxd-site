@@ -195,7 +195,7 @@ function StepCard({ number, title, desc }) {
   );
 }
 
-function PricingCard({ tier, price, features, button, href, highlight }) {
+function PricingCard({ tier, price, features, button, href, highlight = false }) {
   return (
     <div
       className={`p-10 rounded-xl border backdrop-blur-md ${
