@@ -1,27 +1,14 @@
-// app/api/ai/route.ts
-import { NextResponse } from "next/server";
-import { callGroq } from "@/lib/ai/groq";
+// lib/ai/router.ts
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    const prompt: string = body?.prompt ?? "";
+import { groq } from "./groq";
 
-    if (!prompt) {
-      return NextResponse.json(
-        { error: "Missing 'prompt' in request body" },
-        { status: 400 }
-      );
-    }
+export async function runAI(model: string, prompt: string) {
+  switch (model) {
+    case "groq":
+      return await groq(prompt);
 
-    const reply = await callGroq(prompt);
-
-    return NextResponse.json({ reply });
-  } catch (err) {
-    console.error("AI route error:", err);
-    return NextResponse.json(
-      { error: "AI request failed" },
-      { status: 500 }
-    );
+    default:
+      throw new Error(`Unknown model: ${model}`);
   }
+}
 }
