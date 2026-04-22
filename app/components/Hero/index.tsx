@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import MotionLayer from "./MotionLayer";
 import DataStreams from "./DataStreams";
 import OperatorHUD from "./OperatorHUD";
@@ -44,8 +45,8 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col md:flex-row gap-4">
-          <a
-            href="/console"
+          <Link
+            href="/upgrade"
             className="
               px-7 py-3 
               bg-white text-black 
@@ -57,10 +58,10 @@ export default function Hero() {
             "
           >
             Launch Operator Console
-          </a>
+          </Link>
 
-          <a
-            href="/workflows"
+          <Link
+            href="/pricing"
             className="
               px-7 py-3 
               border border-white 
@@ -71,8 +72,8 @@ export default function Hero() {
               transition
             "
           >
-            Build a Workflow
-          </a>
+            View Pricing
+          </Link>
         </div>
       </div>
     </section>

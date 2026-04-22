@@ -1,4 +1,4 @@
-import Hero from "@/app/components/hero";
+import Hero from "@/app/components/Hero";
 import HologramSection from "@/app/components/hologramsection";
 import NeuralLink from "@/app/components/neurallink";
 import GroqLPU from "@/app/components/groqlpu";
