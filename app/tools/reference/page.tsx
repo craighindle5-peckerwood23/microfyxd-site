@@ -9,15 +9,16 @@ export default function ReferencePage() {
 
         <h1 className="text-4xl font-bold text-gray-900">Quick Reference Sheets</h1>
         <p className="mt-4 text-gray-600 text-lg">
-          One‑page, fast‑access sheets designed for real‑world situations. Perfect for legal rights,
-          workplace procedures, and personal productivity.
+          One‑page, fast‑access sheets designed for real‑world situations.
         </p>
 
         <div className="mt-10 space-y-8">
           {references.map((sheet) => (
             <div key={sheet.id} className="border border-gray-200 rounded-lg p-6">
               <h2 className="text-2xl font-semibold text-gray-900">{sheet.name}</h2>
-              <p className="mt-2 text-gray-700">{sheet.longDescription ?? sheet.description}</p>
+              <p className="mt-2 text-gray-700">
+                {sheet.longDescription ?? sheet.description}
+              </p>
 
               {sheet.includes && (
                 <div className="mt-4">
