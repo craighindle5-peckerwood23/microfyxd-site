@@ -22,10 +22,7 @@
   --radius-card: 14px;
 }
 
-/* ----------------------------- */
 /* Base Page Styling */
-/* ----------------------------- */
-
 html, body {
   background: var(--core-void);
   color: #E6EEF6;
@@ -33,10 +30,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ----------------------------- */
 /* Whisper Glass Surface */
-/* ----------------------------- */
-
 .whisper-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border-subtle);
@@ -44,55 +38,25 @@ html, body {
   border-radius: var(--radius-frame);
 }
 
-/* ----------------------------- */
 /* Utility Classes */
-/* ----------------------------- */
-
 .opacity-15 { opacity: 0.15; }
+.intent-glow { box-shadow: var(--intent-glow); }
+.rounded-frame { border-radius: var(--radius-frame); }
+.rounded-card { border-radius: var(--radius-card); }
 
-.intent-glow {
-  box-shadow: var(--intent-glow);
-}
-
-.rounded-frame {
-  border-radius: var(--radius-frame);
-}
-
-.rounded-card {
-  border-radius: var(--radius-card);
-}
-
-/* ----------------------------- */
 /* Crystallization Animation */
-/* ----------------------------- */
-
 @keyframes crystallize {
-  0% {
-    box-shadow: 0 0 0 rgba(0,243,255,0);
-    border-color: rgba(124,77,255,0);
-  }
-  20% {
-    box-shadow: 0 0 25px rgba(124,77,255,0.4);
-    border-color: rgba(124,77,255,0.7);
-  }
-  60% {
-    box-shadow: 0 0 25px rgba(0,243,255,0.4);
-    border-color: rgba(0,243,255,0.7);
-  }
-  100% {
-    box-shadow: 0 0 0 rgba(0,243,255,0);
-    border-color: rgba(255,255,255,0.6);
-  }
+  0% { box-shadow: 0 0 0 rgba(0,243,255,0); border-color: rgba(124,77,255,0); }
+  20% { box-shadow: 0 0 25px rgba(124,77,255,0.4); border-color: rgba(124,77,255,0.7); }
+  60% { box-shadow: 0 0 25px rgba(0,243,255,0.4); border-color: rgba(0,243,255,0.7); }
+  100% { box-shadow: 0 0 0 rgba(0,243,255,0); border-color: rgba(255,255,255,0.6); }
 }
 
 .crystallization-moment {
   animation: crystallize 2s ease-out forwards;
 }
 
-/* ----------------------------- */
 /* Pricing Table Shimmer */
-/* ----------------------------- */
-
 @keyframes rowShimmer {
   0% { background-position: 100% 0; }
   100% { background-position: -100% 0; }
@@ -102,12 +66,7 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(0,243,255,0.18),
-    transparent
-  );
+  background: linear-gradient(120deg, transparent, rgba(0,243,255,0.18), transparent);
   background-size: 200% 100%;
   animation: rowShimmer 1.2s ease-out 1;
   pointer-events: none;
