@@ -13,6 +13,8 @@ import FinalCTA from "@/app/components/finalcta";
 export default function Page() {
   return (
     <main className="flex flex-col w-full items-center justify-center">
+
+      {/* Quiet Intelligence Frame Section */}
       <section className="w-full">
         <Hero />
       </section>
@@ -59,5 +61,3 @@ export default function Page() {
     </main>
   );
 }
-
-// Vercel redeploy — Sat Apr 25 21:12:43 UTC 2026
