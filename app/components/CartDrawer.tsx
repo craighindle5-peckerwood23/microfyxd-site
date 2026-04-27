@@ -5,14 +5,17 @@ import { Product } from "@/lib/products";
 type CartItem = Product & { qty: number };
 
 type Props = {
+  open: boolean;
+  onClose: () => void;
   cart: CartItem[];
   total: number;
   remove: (id: string) => void;
   clear: () => void;
-  onClose: () => void;
 };
 
-export default function CartDrawer({ cart, total, remove, clear, onClose }: Props) {
+export default function CartDrawer({ open, onClose, cart, total, remove, clear }: Props) {
+  if (!open) return null;
+
   return (
     <div className="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl z-50 flex flex-col">
       <div className="flex items-center justify-between p-4 border-b">
