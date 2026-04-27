@@ -29,7 +29,7 @@ export function HeroCanvas() {
           className={`w-full bg-transparent outline-none border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3 text-lg transition-shadow ${
             value ? "intent-glow" : ""
           }`}
-          placeholder="Describe the problem you're trying to solve..."
+          placeholder="Describe the problem you\'re trying to solve..."
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -49,4 +49,5 @@ export function HeroCanvas() {
         )}
       </WhisperCard>
     </section>
-  
+  );
+}
