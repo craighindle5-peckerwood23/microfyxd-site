@@ -10,14 +10,16 @@ export default function BundlesPage() {
         <h1 className="text-4xl font-bold text-gray-900">Bundles & Packs</h1>
         <p className="mt-4 text-gray-600 text-lg">
           High‑value collections of Microfyxd tools designed to give you maximum impact at a
-          discounted price. Perfect for personal development, legal documentation, and productivity.
+          discounted price.
         </p>
 
         <div className="mt-10 space-y-8">
           {bundles.map((bundle) => (
             <div key={bundle.id} className="border border-gray-200 rounded-lg p-6">
               <h2 className="text-2xl font-semibold text-gray-900">{bundle.name}</h2>
-              <p className="mt-2 text-gray-700">{bundle.longDescription ?? bundle.description}</p>
+              <p className="mt-2 text-gray-700">
+                {bundle.longDescription ?? bundle.description}
+              </p>
 
               {bundle.includes && (
                 <div className="mt-4">
