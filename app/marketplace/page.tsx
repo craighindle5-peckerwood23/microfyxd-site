@@ -10,7 +10,7 @@ import CartDrawer from "@/app/components/CartDrawer";
 export default function Marketplace() {
   const [category, setCategory] = useState("all");
   const { product, open, close } = useProductModal();
-  const { cart, add, remove, clear } = useCart();
+  const { cart, add, remove, clear, total } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
 
   const categories = [
@@ -33,6 +33,7 @@ export default function Marketplace() {
         open={cartOpen}
         onClose={() => setCartOpen(false)}
         cart={cart}
+        total={total}
         remove={remove}
         clear={clear}
       />
@@ -83,27 +84,24 @@ export default function Marketplace() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((product) => (
+            {filtered.map((p) => (
               <div
-                key={product.id}
+                key={p.id}
                 className="group bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition"
               >
-                <h2 className="text-xl font-semibold text-gray-900">
-                  {product.name}
-                </h2>
-                <p className="text-gray-600 text-sm mt-1">{product.description}</p>
-                <p className="mt-3 font-semibold text-indigo-700">{product.price}</p>
+                <h2 className="text-xl font-semibold text-gray-900">{p.name}</h2>
+                <p className="text-gray-600 text-sm mt-1">{p.description}</p>
+                <p className="mt-3 font-semibold text-indigo-700">{p.price}</p>
 
                 <div className="mt-6 flex gap-3">
                   <button
-                    onClick={() => open(product)}
+                    onClick={() => open(p)}
                     className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition"
                   >
                     Preview
                   </button>
-
                   <button
-                    onClick={() => add(product)}
+                    onClick={() => add(p)}
                     className="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
                   >
                     Add to Cart
