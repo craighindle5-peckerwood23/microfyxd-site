@@ -1,23 +1,27 @@
-// app/layout.tsx
-import './globals.css'
-import { Inter, Space_Grotesk } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const grotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-grotesk' })
+import "../styles/globals.css";
+import { SiteNav } from "../components/SiteNav";
 
 export const metadata = {
-  title: 'Microfyxd',
-  description: 'AI Operator Console powered by Groq',
-}
+  title: "Microfyxd",
+  description: "Quiet Intelligence for your workflow",
+};
 
-import React from 'react';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
-      <body className="bg-[#05070A] text-white antialiased">
-        {children}
+    <html lang="en">
+      <body className="bg-coreVoid text-slate-100 antialiased">
+        <div className="min-h-screen flex flex-col">
+          {/* Global Floating Navigation */}
+          <SiteNav />
+
+          {/* Main Content Frame */}
+          <main className="flex-1 flex justify-center">
+            <div className="w-full max-w-6xl px-4 py-10">
+              {children}
+            </div>
+          </main>
+        </div>
       </body>
     </html>
-  )
+  );
 }
