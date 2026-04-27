@@ -1,4 +1,5 @@
 import { products } from "@/lib/products";
+import BundleExpand from "@/app/components/BundleExpand";
 
 export default function BundlesPage() {
   const bundles = products.filter((p) => p.category === "bundles");
@@ -13,7 +14,7 @@ export default function BundlesPage() {
           discounted price.
         </p>
 
-        <div className="mt-10 space-y-8">
+        <div className="mt-10 space-y-10">
           {bundles.map((bundle) => (
             <div key={bundle.id} className="border border-gray-200 rounded-lg p-6">
               <h2 className="text-2xl font-semibold text-gray-900">{bundle.name}</h2>
@@ -21,16 +22,8 @@ export default function BundlesPage() {
                 {bundle.longDescription ?? bundle.description}
               </p>
 
-              {bundle.includes && (
-                <div className="mt-4">
-                  <h3 className="text-lg font-semibold text-gray-900">What’s Included</h3>
-                  <ul className="mt-2 space-y-1 text-gray-700">
-                    {bundle.includes.map((item) => (
-                      <li key={item}>• {item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {/* Auto‑expand included items */}
+              <BundleExpand bundle={bundle} />
 
               <p className="mt-4 font-semibold text-indigo-700">{bundle.price}</p>
             </div>
