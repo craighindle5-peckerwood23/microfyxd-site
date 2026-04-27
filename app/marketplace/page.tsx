@@ -2,58 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  DocumentTextIcon,
-  Squares2X2Icon,
-  SparklesIcon,
-  ClipboardDocumentListIcon,
-} from "@heroicons/react/24/outline";
+import { products } from "@/lib/products";
 
 export default function Marketplace() {
   const [category, setCategory] = useState("all");
-
-  const products = [
-    {
-      name: "Grievance Report Sheet",
-      description: "A clean, structured template for workplace or housing grievances.",
-      price: "$5",
-      category: "legal",
-      icon: DocumentTextIcon,
-      href: "/tools/grievance",
-    },
-    {
-      name: "10‑Sheet Grievance Bundle",
-      description: "A discounted pack of 10 professional grievance sheets.",
-      price: "$20",
-      category: "bundles",
-      icon: Squares2X2Icon,
-      href: "/tools/bundles",
-    },
-    {
-      name: "Limit Breaker Guide: Discipline",
-      description: "A deep‑dive doctrine card for leveling up discipline.",
-      price: "$7",
-      category: "guides",
-      icon: SparklesIcon,
-      href: "/tools/guides",
-    },
-    {
-      name: "Quick Reference: ADA Rights",
-      description: "One‑page ADA rights sheet for hotels, programs, and housing.",
-      price: "$3",
-      category: "reference",
-      icon: ClipboardDocumentListIcon,
-      href: "/tools/reference",
-    },
-    {
-      name: "3‑Subject Productivity Pack",
-      description: "Discipline + Focus + Time Management doctrine cards.",
-      price: "$15",
-      category: "bundles",
-      icon: Squares2X2Icon,
-      href: "/tools/bundles",
-    },
-  ];
 
   const categories = [
     { id: "all", label: "All" },
@@ -101,23 +53,18 @@ export default function Marketplace() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((product) => (
             <Link
-              key={product.name}
+              key={product.id}
               href={product.href}
               className="group bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition"
             >
-              <div className="flex items-start gap-4">
-                <product.icon className="h-10 w-10 text-indigo-600 group-hover:text-indigo-700" />
-                <div>
-                  <h2 className="text-xl font-semibold text-gray-900">
-                    {product.name}
-                  </h2>
-                  <p className="text-gray-600 text-sm mt-1">
-                    {product.description}
-                  </p>
-                  <p className="mt-3 font-semibold text-indigo-700">
-                    {product.price}
-                  </p>
-                </div>
+              <div className="flex flex-col gap-3">
+                <h2 className="text-xl font-semibold text-gray-900">
+                  {product.name}
+                </h2>
+                <p className="text-gray-600 text-sm">{product.description}</p>
+                <p className="mt-2 font-semibold text-indigo-700">
+                  {product.price}
+                </p>
               </div>
             </Link>
           ))}
