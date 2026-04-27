@@ -39,6 +39,4 @@ export default function GrievanceSheetPage() {
         </button>
 
       </div>
-    </div>
-  );
-}
+    <
