@@ -1,4 +1,8 @@
+import { products } from "@/lib/products";
+
 export default function BundlesPage() {
+  const bundles = products.filter((p) => p.category === "bundles");
+
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-sm border border-gray-200">
@@ -9,24 +13,27 @@ export default function BundlesPage() {
           discounted price. Perfect for personal development, legal documentation, and productivity.
         </p>
 
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold text-gray-900">Available Bundles</h2>
-          <ul className="mt-4 space-y-4 text-gray-700">
-            <li>
-              <strong>10‑Sheet Grievance Bundle</strong> — A pack of 10 professional grievance sheets.
-            </li>
-            <li>
-              <strong>3‑Subject Productivity Pack</strong> — Discipline, Focus, Time Management.
-            </li>
-            <li>
-              <strong>Limit Breaker Mega Pack</strong> — All doctrine cards in one discounted bundle.
-            </li>
-          </ul>
-        </div>
+        <div className="mt-10 space-y-8">
+          {bundles.map((bundle) => (
+            <div key={bundle.id} className="border border-gray-200 rounded-lg p-6">
+              <h2 className="text-2xl font-semibold text-gray-900">{bundle.name}</h2>
+              <p className="mt-2 text-gray-700">{bundle.longDescription ?? bundle.description}</p>
 
-        <button className="mt-12 w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition">
-          View Bundle Options
-        </button>
+              {bundle.includes && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold text-gray-900">What’s Included</h3>
+                  <ul className="mt-2 space-y-1 text-gray-700">
+                    {bundle.includes.map((item) => (
+                      <li key={item}>• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <p className="mt-4 font-semibold text-indigo-700">{bundle.price}</p>
+            </div>
+          ))}
+        </div>
 
       </div>
     </div>
