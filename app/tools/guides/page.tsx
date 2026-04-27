@@ -9,15 +9,16 @@ export default function GuidesPage() {
 
         <h1 className="text-4xl font-bold text-gray-900">Limit Breaker Guides</h1>
         <p className="mt-4 text-gray-600 text-lg">
-          Doctrine‑style guide sheets designed to help you break mental ceilings, build discipline,
-          and level up your life. Each guide is structured, actionable, and easy to apply.
+          Doctrine‑style guide sheets designed to help you break mental ceilings and level up your life.
         </p>
 
         <div className="mt-10 space-y-8">
           {guides.map((guide) => (
             <div key={guide.id} className="border border-gray-200 rounded-lg p-6">
               <h2 className="text-2xl font-semibold text-gray-900">{guide.name}</h2>
-              <p className="mt-2 text-gray-700">{guide.longDescription ?? guide.description}</p>
+              <p className="mt-2 text-gray-700">
+                {guide.longDescription ?? guide.description}
+              </p>
 
               {guide.features && (
                 <div className="mt-4">
