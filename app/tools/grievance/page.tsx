@@ -1,3 +1,4 @@
+import React from "react";
 import { products } from "@/lib/products";
 
 export default function GrievanceSheetPage() {
@@ -8,35 +9,22 @@ export default function GrievanceSheetPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-sm border border-gray-200">
-
         <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
-        <p className="mt-4 text-gray-600 text-lg">{product.longDescription}</p>
-
-        {product.features && (
-          <div className="mt-10">
-            <h2 className="text-2xl font-semibold text-gray-900">Features</h2>
-            <ul className="mt-4 space-y-2 text-gray-700">
-              {product.features.map((f) => (
-                <li key={f}>• {f}</li>
-              ))}
-            </ul>
-          </div>
+        <p className="mt-4 text-gray-600 text-lg">{product.description}</p>
+        {product.longDescription && (
+          <p className="mt-4 text-gray-500">{product.longDescription}</p>
         )}
-
-        {product.includes && (
-          <div className="mt-10">
-            <h2 className="text-2xl font-semibold text-gray-900">What’s Included</h2>
-            <ul className="mt-4 space-y-2 text-gray-700">
-              {product.includes.map((i) => (
-                <li key={i}>• {i}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <button className="mt-12 w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition">
-          Download ({product.price})
-        </button>
-
+        <div className="mt-8">
+          <a
+            href={`https://cash.app/$Microfyxd/${product.price.replace("$", "")}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block px-6 py-3 rounded-lg bg-[#00D632] text-black font-semibold hover:bg-[#00f542] transition"
+          >
+            Buy for {product.price} via Cash App
+          </a>
+        </div>
       </div>
-    <
+    </div>
+  );
+}
