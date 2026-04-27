@@ -49,5 +49,4 @@ export function HeroCanvas() {
         )}
       </WhisperCard>
     </section>
-  );
-}
+  
