@@ -1,4 +1,8 @@
+import { products } from "@/lib/products";
+
 export default function GuidesPage() {
+  const guides = products.filter((p) => p.category === "guides");
+
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-sm border border-gray-200">
@@ -9,19 +13,27 @@ export default function GuidesPage() {
           and level up your life. Each guide is structured, actionable, and easy to apply.
         </p>
 
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold text-gray-900">Available Guides</h2>
-          <ul className="mt-4 space-y-4 text-gray-700">
-            <li><strong>Discipline</strong> — Build consistency and self‑control.</li>
-            <li><strong>Focus</strong> — Eliminate distractions and sharpen attention.</li>
-            <li><strong>Emotional Control</strong> — Stay calm under pressure.</li>
-            <li><strong>Momentum</strong> — Build unstoppable forward movement.</li>
-          </ul>
-        </div>
+        <div className="mt-10 space-y-8">
+          {guides.map((guide) => (
+            <div key={guide.id} className="border border-gray-200 rounded-lg p-6">
+              <h2 className="text-2xl font-semibold text-gray-900">{guide.name}</h2>
+              <p className="mt-2 text-gray-700">{guide.longDescription ?? guide.description}</p>
 
-        <button className="mt-12 w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition">
-          Browse Guides
-        </button>
+              {guide.features && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Key Frameworks</h3>
+                  <ul className="mt-2 space-y-1 text-gray-700">
+                    {guide.features.map((f) => (
+                      <li key={f}>• {f}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <p className="mt-4 font-semibold text-indigo-700">{guide.price}</p>
+            </div>
+          ))}
+        </div>
 
       </div>
     </div>
