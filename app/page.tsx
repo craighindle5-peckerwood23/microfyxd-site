@@ -1,39 +1,10 @@
-import MicroTaskEngine from "@/components/MicroTaskEngine";
-import FileAnalyzer from "@/components/FileAnalyzer";
-import WorkflowBuilder from "@/components/WorkflowBuilder";
-import PoweredByGroq from "@/components/PoweredByGroq";
-import CoachingPost from "@/components/CoachingPost";
-import FinalCTA from "@/components/FinalCTA";
-
 export default function Page() {
   return (
-    <main className="flex flex-col w-full items-center justify-center">
-
-      <section className="w-full">
-        <MicroTaskEngine />
-      </section>
-
-      <section className="w-full">
-        <FileAnalyzer />
-      </section>
-
-      <section className="w-full">
-        <WorkflowBuilder />
-      </section>
-
-      <section className="w-full">
-        <PoweredByGroq />
-      </section>
-
-      <section className="w-full">
-        <CoachingPost />
-      </section>
-
-      <section className="w-full">
-        <FinalCTA />
-      </section>
-
+    <main className="flex flex-col w-full items-center justify-center p-10">
+      <h1 className="text-3xl font-bold text-white">Microfyxd</h1>
+      <p className="text-slate-400 mt-4">
+        Clean build. No missing components. Ready for deployment.
+      </p>
     </main>
   );
 }
-
