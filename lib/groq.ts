@@ -4,7 +4,7 @@ export const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY!,
 });
 
-export async function groqChat(prompt: string) {
+export async function groqChat(prompt: string): Promise<string> {
   const completion = await groq.chat.completions.create({
     model: "llama-3.1-70b-versatile",
     messages: [{ role: "user", content: prompt }],
@@ -13,3 +13,6 @@ export async function groqChat(prompt: string) {
 
   return completion.choices[0]?.message?.content ?? "";
 }
+
+// Alias used by api routes
+export const callGroq = groqChat;
