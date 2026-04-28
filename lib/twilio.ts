@@ -10,5 +10,5 @@ export async function sendSMS(to: string, body: string) {
     process.env.TWILIO_MESSAGING_SERVICE_SID ||
     process.env.TWILIO_FROM_NUMBER;
 
-  if (!from) throw
+  if if (!from) throw new Error("Missing Twilio FROM number");
 
