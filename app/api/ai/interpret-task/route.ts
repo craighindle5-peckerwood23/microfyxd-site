@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getTask, updateTask } from "@/lib/db";
 import { callGroq } from "@/lib/groq";
 
 const SYSTEM_PROMPT = `
-You are an operations agent. 
+You are an operations agent.
 Given a user task, output a JSON plan with steps.
 Each step must have:
 - id: string
@@ -18,37 +18,24 @@ Return ONLY valid JSON.
 export async function POST(req: Request) {
   try {
     const { taskId } = await req.json();
+    if (!taskId) return NextResponse.json({ error: "Missing taskId" }, { status: 400 });
 
-    if (!taskId) {
-      return NextResponse.json({ error: "Missing taskId" }, { status: 400 });
-    }
-
-    const task = await db.task.findUnique({ where: { id: taskId } });
-    if (!task) {
-      return NextResponse.json({ error: "Task not found" }, { status: 404 });
-    }
+    const task = await getTask(taskId);
+    if (!task) return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
     const aiResponse = await callGroq([
       { role: "system", content: SYSTEM_PROMPT },
-      { role: "user", content: task.text }
-    ], "tasks");
+      { role: "user", content: task.text },
+    ]);
 
-    // Extract JSON from AI response
     const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
-    const jsonStr = jsonMatch ? jsonMatch[0] : aiResponse;
-    const plan = JSON.parse(jsonStr);
+    const plan = JSON.parse(jsonMatch ? jsonMatch[0] : aiResponse);
 
-    await db.task.update({
-      where: { id: taskId },
-      data: { 
-        plan: JSON.stringify(plan),
-        status: "pending" 
-      },
-    });
+    await updateTask(taskId, { plan, status: "pending" });
 
     return NextResponse.json({ ok: true, plan });
-  } catch (error: any) {
-    console.error("Interpretation error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
