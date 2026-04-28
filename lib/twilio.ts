@@ -7,8 +7,10 @@ const client = twilio(
 
 export async function sendSMS(to: string, body: string) {
   const from =
-    process.env.TWILIO_MESSAGING_SERVICE_SID ||
-    process.env.TWILIO_FROM_NUMBER;
+    const from =
+  process.env.TWILIO_MESSAGING_SERVICE_SID ||
+  process.env.TWILIO_FROM_NUMBER;
 
-  if if (!from) throw new Error("Missing Twilio FROM number");
-
+if (!from) {
+  throw new Error("Missing Twilio FROM number");
+}
