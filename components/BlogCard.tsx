@@ -1,6 +1,11 @@
 import { WhisperCard } from "./WhisperCard";
 
-export function BlogCard({ title, excerpt }) {
+type BlogCardProps = {
+  title: string;
+  excerpt: string;
+};
+
+export function BlogCard({ title, excerpt }: BlogCardProps) {
   return (
     <WhisperCard className="p-6 group relative overflow-hidden">
       <div className="relative space-y-2">
