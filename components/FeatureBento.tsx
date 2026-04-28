@@ -1,4 +1,13 @@
-export function FeatureBento({ features }) {
+"use client";
+
+type Feature = {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+};
+
+export function FeatureBento({ features }: { features: Feature[] }) {
   return (
     <section className="grid gap-4 md:grid-cols-3 py-16">
       {features.map((f) => (
