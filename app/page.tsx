@@ -1,4 +1,3 @@
-
 import MicroTaskEngine from "@/components/MicroTaskEngine";
 import FileAnalyzer from "@/components/FileAnalyzer";
 import WorkflowBuilder from "@/components/WorkflowBuilder";
@@ -9,25 +8,6 @@ import FinalCTA from "@/components/FinalCTA";
 export default function Page() {
   return (
     <main className="flex flex-col w-full items-center justify-center">
-      <section className="w-full">
-        <Hero />
-      </section>
-
-      <section className="w-full">
-        <HologramSection />
-      </section>
-
-      <section className="w-full">
-        <NeuralLink />
-      </section>
-
-      <section className="w-full">
-        <GroqLPU />
-      </section>
-
-      <section className="w-full">
-        <OperatorConsoleSection />
-      </section>
 
       <section className="w-full">
         <MicroTaskEngine />
@@ -52,6 +32,7 @@ export default function Page() {
       <section className="w-full">
         <FinalCTA />
       </section>
+
     </main>
   );
 }
