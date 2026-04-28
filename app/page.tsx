@@ -1,8 +1,4 @@
-import Hero from "@/components/Hero";
-import HologramSection from "@/components/HologramSection";
-import NeuralLink from "@/components/NeuralLink";
-import GroqLPU from "@/components/GroqLPU";
-import OperatorConsoleSection from "@/components/OperatorConsoleSection";
+n
 import MicroTaskEngine from "@/components/MicroTaskEngine";
 import FileAnalyzer from "@/components/FileAnalyzer";
 import WorkflowBuilder from "@/components/WorkflowBuilder";
