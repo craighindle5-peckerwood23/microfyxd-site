@@ -1,21 +1,35 @@
 // lib/db.ts
-// Central database client — uses Supabase (replaces Prisma/SQLite)
-import { createClient } from "@supabase/supabase-js";
+// Lazy Supabase client — only instantiated at runtime, never at build time
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+let _db: SupabaseClient | null = null;
 
-// Service-role client for server-side API routes (bypasses RLS)
-export const db = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false,
+function getDb(): SupabaseClient {
+  if (!_db) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) {
+      throw new Error("Supabase env vars not set (NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY)");
+    }
+    _db = createClient(url, key, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+  }
+  return _db;
+}
+
+// Named export so routes can do: import { db } from "@/lib/db"
+// But db is now a Proxy that defers creation until first use
+export const db = new Proxy({} as SupabaseClient, {
+  get(_target, prop) {
+    return (getDb() as any)[prop];
   },
 });
 
 // Helper: create a task
 export async function createTask(text: string, userId?: string) {
-  const { data, error } = await db
+  const client = getDb();
+  const { data, error } = await client
     .from("tasks")
     .insert({ text, status: "pending", user_id: userId ?? null })
     .select()
@@ -26,7 +40,8 @@ export async function createTask(text: string, userId?: string) {
 
 // Helper: get a task by id
 export async function getTask(id: string) {
-  const { data, error } = await db
+  const client = getDb();
+  const { data, error } = await client
     .from("tasks")
     .select("*")
     .eq("id", id)
@@ -37,7 +52,8 @@ export async function getTask(id: string) {
 
 // Helper: update a task
 export async function updateTask(id: string, updates: Record<string, unknown>) {
-  const { data, error } = await db
+  const client = getDb();
+  const { data, error } = await client
     .from("tasks")
     .update(updates)
     .eq("id", id)
