@@ -2,25 +2,26 @@ import Groq from "groq-sdk";
 
 type Message = { role: "system" | "user" | "assistant"; content: string };
 
-export const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY!,
-});
+let _groq: Groq | null = null;
 
-export async function groqChat(prompt: string): Promise<string> {
-  const completion = await groq.chat.completions.create({
-    model: "llama-3.1-70b-versatile",
-    messages: [{ role: "user", content: prompt }],
-    temperature: 0.3,
-  });
-  return completion.choices[0]?.message?.content ?? "";
+function getGroq(): Groq {
+  if (!_groq) {
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) throw new Error("GROQ_API_KEY env var is not set");
+    _groq = new Groq({ apiKey });
+  }
+  return _groq;
 }
 
-// Used by API routes — accepts messages array + optional mode (ignored, for compat)
-export async function callGroq(messages: Message[], _mode?: string): Promise<string> {
-  const completion = await groq.chat.completions.create({
+export async function callGroq(messages: Message[]): Promise<string> {
+  const completion = await getGroq().chat.completions.create({
     model: "llama-3.1-70b-versatile",
     messages,
     temperature: 0.3,
   });
   return completion.choices[0]?.message?.content ?? "";
+}
+
+export async function groqChat(prompt: string): Promise<string> {
+  return callGroq([{ role: "user", content: prompt }]);
 }
