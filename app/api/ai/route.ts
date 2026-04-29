@@ -1,8 +1,7 @@
 export const dynamic = "force-dynamic";
 
-// app/api/ai/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { callGroq } from "../../../lib/groq";
+import { callGroq } from "@/lib/groq";
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,17 +16,14 @@ export async function POST(req: NextRequest) {
         ? "You are MicroFix, an operator-grade micro-task generator. Given a messy request, output a tight, actionable list of steps and micro-tasks."
         : "You are an operator-grade AI assistant. Be concise, precise, and execution-focused.";
 
-    const content = await callGroq(
-      [
-        { role: "system", content: system },
-        { role: "user", content: input },
-      ],
-      mode,
-    );
+    const content = await callGroq([
+      { role: "system", content: system },
+      { role: "user", content: input },
+    ]);
 
     return NextResponse.json({ content });
-  } catch (e: any) {
-    console.error(e);
-    return NextResponse.json({ error: "AI error" }, { status: 500 });
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
