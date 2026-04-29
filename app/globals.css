@@ -2,81 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════
+   QUIET INTELLIGENCE — Design Token System
+   ═══════════════════════════════════════════════════════ */
 :root {
-    --background: #000000;
-    --foreground: #ffffff;
+  /* Core Void */
+  --void:        #08080D;
+  --void-2:      #0A0A10;
+  --void-3:      #0E0E16;
+
+  /* Whisper Glass */
+  --glass-bg:    rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.05);
+  --glass-blur:  12px;
+
+  /* Intent Glow */
+  --glow-cyan:   rgba(0,243,255,0.15);
+  --glow-violet: rgba(123,47,247,0.15);
+  --glow-strong: rgba(0,243,255,0.35);
+
+  /* Text hierarchy */
+  --text-1: rgba(255,255,255,0.92);
+  --text-2: rgba(255,255,255,0.50);
+  --text-3: rgba(255,255,255,0.22);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--text-1);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-@layer base {
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    @apply bg-neutral-900 text-white;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }@keyframes datastream {
-  0% { transform: translateY(-20%); }
-  100% { transform: translateY(20%); }
+/* ── Whisper Glass utility ── */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
-@keyframes pulsewave {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.35; }
+/* ── Intent Glow utility ── */
+.glow-intent {
+  box-shadow: 0 0 15px var(--glow-cyan), 0 0 40px var(--glow-violet);
 }
+
+/* ── Crystallization keyframe ── */
+@keyframes crystallize {
+  0%   { background-position: 200% center; opacity:0.8; }
+  60%  { background-position: 0% center; opacity:1; }
+  100% { background-position: -200% center; opacity:1; }
 }
-@keyframes hudfloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+.crystallize {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,243,255,0.6) 40%, rgba(123,47,247,0.6) 60%, transparent 100%);
+  background-size: 200% auto;
+  animation: crystallize 2s ease forwards;
 }
+
+/* ── Breathing glow keyframe (pricing card) ── */
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 12px var(--glow-cyan), 0 0 30px var(--glow-violet); }
+  50%       { box-shadow: 0 0 28px var(--glow-cyan), 0 0 60px var(--glow-violet); }
+}
+.breathe { animation: breathe 5s ease-in-out infinite; }
+
+/* ── Ghost card blur ── */
+.ghost-card {
+  opacity: 0.13;
+  filter: blur(2px);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+}
+.ghost-card:hover {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(-4px);
+}
+
+/* ── Cursor shimmer on nav ── */
+@keyframes shimmer-row {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--text-2) 0%, var(--text-1) 40%, rgba(0,243,255,0.9) 60%, var(--text-2) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-row 2s linear infinite;
+}
+
+/* ── Scan line ambient ── */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); opacity: 0.03; }
+  100% { transform: translateY(100vh); opacity: 0.03; }
+}
+.scanline {
+  position: fixed; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, rgba(0,243,255,0.4), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none; z-index: 9999;
+}
+
+/* ── Pulse cursor dot ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ── Float ── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-14px); }
+  50%       { transform: translateY(-10px); }
 }
+.float { animation: float 6s ease-in-out infinite; }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.85; }
+/* ── Fade up ── */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
 }
-
-@keyframes scan {
-  0% { opacity: 0.15; }
-  50% { opacity: 0.35; }
-  100% { opacity: 0.15; }
-}
-@keyframes scanlines {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(3px); }
-}
-@keyframes boot1 {
-  0% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 0.7; transform: translateY(0); }
-}
-
-@keyframes boot2 {
-  0%, 20% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 0.7; transform: translateY(0); }
-}
-
-@keyframes boot3 {
-  0%, 40% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 0.7; transform: translateY(0); }
-}
-
-@keyframes boot4 {
-  0%, 60% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
+.fade-up { animation: fadeUp 0.7s ease forwards; }
+.fade-up-delay-1 { animation: fadeUp 0.7s 0.15s ease both; }
+.fade-up-delay-2 { animation: fadeUp 0.7s 0.3s ease both; }
+.fade-up-delay-3 { animation: fadeUp 0.7s 0.45s ease both; }
