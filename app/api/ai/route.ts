@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 // app/api/ai/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { callGroq } from "../../../lib/groq";
