@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { createTask, updateTask } from "@/lib/db";
 import { callGroq } from "@/lib/groq";
