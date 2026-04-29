@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabaseBrowser } from "@/lib/supabase-client";
 
 export function useCurrentUser() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    async function load() {
-      const token = localStorage.getItem('token');
-      if (!token) return;
+    const supabase = supabaseBrowser();
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user ?? null);
+    });
 
-      const res = await fetch('/api/membership/me', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
-      const data = await res.json();
-      setUser(data.user);
-    }
-
-    load();
+    return () => listener.subscription.unsubscribe();
   }, []);
 
   return user;
