@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,39 +9,28 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)'],
-        grotesk: ['var(--font-grotesk)'],
+        inter:   ["var(--font-inter)", "system-ui", "sans-serif"],
+        grotesk: ["var(--font-grotesk)", "system-ui", "sans-serif"],
+      },
+      colors: {
+        void:   "#08080D",
+        intent: "rgba(0,243,255,0.15)",
       },
       animation: {
-        'spin-slow': 'spin 8s linear infinite',
-        'reverse-spin': 'reverse-spin 12s linear infinite',
-        'hudfloat': 'hudfloat 8s ease-in-out infinite',
-        'scanlines': 'scanlines 12s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'scan': 'scan 8s linear infinite',
+        "breathe":    "breathe 5s ease-in-out infinite",
+        "pulse-dot":  "pulse-dot 2s ease-in-out infinite",
+        "shimmer":    "shimmer-row 3s linear infinite",
+        "float":      "float 6s ease-in-out infinite",
+        "scanline":   "scanline 8s linear infinite",
+        "fade-up":    "fadeUp 0.7s ease forwards",
       },
       keyframes: {
-        'reverse-spin': {
-          from: { transform: 'rotate(360deg)' },
-          to: { transform: 'rotate(0deg)' },
-        },
-        'hudfloat': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        'scanlines': {
-          '0%': { backgroundPosition: '0 0' },
-          '100%': { backgroundPosition: '0 100%' },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-15px)' },
-        },
-        'scan': {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100%)' },
+        breathe: {
+          "0%, 100%": { boxShadow: "0 0 12px rgba(0,243,255,0.15), 0 0 30px rgba(123,47,247,0.1)" },
+          "50%":       { boxShadow: "0 0 28px rgba(0,243,255,0.3), 0 0 60px rgba(123,47,247,0.2)" },
         },
       },
+      backdropBlur: { glass: "12px" },
     },
   },
   plugins: [],
