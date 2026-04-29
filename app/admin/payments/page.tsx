@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabaseBrowser } from "@/lib/supabase-client";
 
 type Confirmation = {
   id: string;
@@ -23,6 +18,7 @@ type Confirmation = {
 export default function AdminPaymentsPage() {
   const [rows, setRows] = useState<Confirmation[]>([]);
   const [loading, setLoading] = useState(true);
+  const supabase = supabaseBrowser();
 
   const fetchRows = async () => {
     const { data } = await supabase
