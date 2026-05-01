@@ -5,17 +5,31 @@ import { createTask, updateTask } from "@/lib/db";
 import { callGroq } from "@/lib/groq";
 import { runPlan } from "@/lib/automation/runPlan";
 
-async function generatePlan(text: string) {
+async function generatePlan(text: string, scheduleContext?: string) {
+  const scheduleSection = scheduleContext
+    ? `\n\nSCHEDULE CONTEXT (check for conflicts before executing):\n${scheduleContext}`
+    : "";
+
   const system = `
-You are an operations agent.
+You are an operations AI agent.
 Given a user request, output a JSON with a "steps" array.
 Each step must have:
-- id
-- type: "phone_call" or "form_submission"
-- required fields for that type (phone_number, script for phone_call; url, fields for form_submission).
-If phone number or URL is missing, still create the step and mark "needs_human_input": true.
-Return ONLY valid JSON.
+- id: unique string
+- type: "phone_call" | "form_submission" | "email" | "schedule_check" | "ai_research"
+- label: human-readable description
+- For phone_call: phone_number (string), script (string)
+- For form_submission: url (string), fields (object)
+- For email: to (string), subject (string), body (string)
+- For schedule_check: description of what to check/resolve
+- needs_human_input: true if info is missing
+
+IMPORTANT: If schedule context is provided, add a "schedule_check" step FIRST to detect conflicts.
+If a conflict is found (e.g. pickup at 2pm but user is free at 2:15), note it and suggest resolution.
+
+Return ONLY valid JSON. No markdown.
+${scheduleSection}
 `;
+
   try {
     const raw = await callGroq([
       { role: "system", content: system },
@@ -30,12 +44,12 @@ Return ONLY valid JSON.
 
 export async function POST(req: Request) {
   try {
-    const { text } = await req.json();
+    const { text, scheduleContext } = await req.json();
     if (!text) return NextResponse.json({ error: "Missing text" }, { status: 400 });
 
     const task = await createTask(text);
-    const plan = await generatePlan(text);
-    await updateTask(task.id, { plan });
+    const plan = await generatePlan(text, scheduleContext);
+    await updateTask(task.id, { plan, schedule_context: scheduleContext || null });
 
     const results = await runPlan(plan);
     const finalTask = await updateTask(task.id, { status: "completed", results });
