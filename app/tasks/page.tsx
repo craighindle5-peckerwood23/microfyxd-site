@@ -339,7 +339,7 @@ export default function TasksPage() {
                         value={scheduleCtx}
                         onChange={e => setScheduleCtx(e.target.value)}
                         rows={3}
-                        placeholder={"James soccer pickup 2pm, I\'m off at 2:15\nDoctor appt Tuesday 10am"}
+                        placeholder="James soccer pickup 2pm, off at 2:15 | Doctor appt Tuesday 10am"
                         className="w-full bg-transparent resize-none outline-none font-mono text-xs"
                         style={{ color: "rgba(255,255,255,0.6)", caretColor: "rgba(0,243,255,0.8)" }}
                       />
